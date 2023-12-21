@@ -16,7 +16,10 @@ class _AppBodyState extends State<AppBody> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.defaultColor,
-      body: SafeArea(child: ListView.builder(itemBuilder: (context, index) {
+
+      body: SafeArea(child: ListView.builder(
+          itemCount: 15,
+          itemBuilder: (context, index) {
         return CustomListViewHomeItem(index);
       })),
     );

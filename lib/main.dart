@@ -1,4 +1,5 @@
 import 'package:design_app_animation/core/app_colors.dart';
+import 'package:design_app_animation/features/app/views/app_home.dart';
 import 'package:design_app_animation/features/splash/presentation/views/splash_screen_home.dart';
 import 'package:flutter/material.dart';
 void main() {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
           selectionColor: AppColors.color1,
         ),
       ),
-      home: const SplashScreenHome(),
+      home: const AppHome(),
     );
   }
 }

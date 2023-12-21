@@ -11,7 +11,7 @@ class CustomListViewHomeItem extends StatefulWidget {
 }
 
 class _CustomListViewHomeItemState extends State<CustomListViewHomeItem>
-    with TickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   static bool isStartAnimation = true;
   late final AnimationController controller;
   late final Animation<Offset> animationOffset;
@@ -20,32 +20,20 @@ class _CustomListViewHomeItemState extends State<CustomListViewHomeItem>
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(
-      vsync: this,
-      duration: Duration(
-        milliseconds: 50 + (isStartAnimation ? widget.index * 150 : 0),
-      ),
-    )..forward();
-    animationOffset = Tween<Offset>(
-      begin: const Offset(1.0, 0.0),
-      end: const Offset(0.0, 0.0),
-    ).animate(CurvedAnimation(parent: controller, curve: Curves.decelerate));
-    animationDouble = Tween<double>(begin: 0, end: 1)
-        .animate(CurvedAnimation(parent: controller, curve: Curves.decelerate));
+
+    _animationControllerItemList();
+    _animationDoubleItemList();
+    _animationOffsetItemList();
 
     Future.delayed(const Duration(milliseconds: 50), () {
       setState(() {
         isStartAnimation = false;
-
-
       });
-
     });
   }
 
   @override
   Widget build(BuildContext context) {
-
     return SlideTransition(
       position: animationOffset,
       child: FadeTransition(
@@ -55,8 +43,37 @@ class _CustomListViewHomeItemState extends State<CustomListViewHomeItem>
             height: 100,
             margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
             decoration: BoxDecoration(
-                color: AppColors.color1, borderRadius: BorderRadius.circular(15)),
+                color: AppColors.color1,
+                borderRadius: BorderRadius.circular(15)),
           )),
     );
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+    debugPrint('Controller List Item DisPose Success');
+  }
+
+  _animationOffsetItemList() {
+    animationOffset = Tween<Offset>(
+      begin: const Offset(1.0, 0.0),
+      end: const Offset(0.0, 0.0),
+    ).animate(CurvedAnimation(parent: controller, curve: Curves.decelerate));
+  }
+
+  _animationDoubleItemList() {
+    animationDouble = Tween<double>(begin: 0, end: 1)
+        .animate(CurvedAnimation(parent: controller, curve: Curves.decelerate));
+  }
+
+  _animationControllerItemList() {
+    controller = AnimationController(
+      vsync: this,
+      duration: Duration(
+        milliseconds: 50 + (isStartAnimation ? widget.index * 100 : 0),
+      ),
+    )..forward();
   }
 }
