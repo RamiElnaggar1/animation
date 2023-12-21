@@ -10,6 +10,7 @@ class SplashViewBody extends StatelessWidget {
     return const Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
+        
         SplashIconAnimation(),
         SplashTextAnimation(),
       ],

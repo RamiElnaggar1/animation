@@ -11,5 +11,6 @@ class SplashScreenHome extends StatelessWidget {
       backgroundColor: AppColors.defaultColor,
       body: const SplashViewBody(),
     );
+
   }
 }

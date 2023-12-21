@@ -12,7 +12,7 @@ final Animation<AlignmentGeometry>animation;
       child: AlignTransition(
         alignment: animation,
         child: Text(
-          'Welcome Back Rami',
+          'Welcome Back ',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w900,
