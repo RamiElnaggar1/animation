@@ -30,6 +30,8 @@ class _CustomListViewHomeItemState extends State<CustomListViewHomeItem>
         isStartAnimation = false;
       });
     });
+
+
   }
 
   @override
@@ -60,19 +62,19 @@ class _CustomListViewHomeItemState extends State<CustomListViewHomeItem>
     animationOffset = Tween<Offset>(
       begin: const Offset(1.0, 0.0),
       end: const Offset(0.0, 0.0),
-    ).animate(CurvedAnimation(parent: controller, curve: Curves.decelerate));
+    ).animate(CurvedAnimation(parent: controller, curve: Curves.easeOutQuad));
   }
 
   _animationDoubleItemList() {
-    animationDouble = Tween<double>(begin: 0, end: 1)
-        .animate(CurvedAnimation(parent: controller, curve: Curves.decelerate));
+    animationDouble = Tween<double>(begin: 0, end: 3)
+        .animate(CurvedAnimation(parent: controller, curve: Curves.easeOutQuad));
   }
 
   _animationControllerItemList() {
     controller = AnimationController(
       vsync: this,
       duration: Duration(
-        milliseconds: 50 + (isStartAnimation ? widget.index * 100 : 0),
+        milliseconds:  isStartAnimation ? widget.index * 200:0,
       ),
     )..forward();
   }
